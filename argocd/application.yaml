@@ -17,7 +17,7 @@ spec:
 
   # SOURCE: ดึง config จากไหน
   source:
-    repoURL: https://github.com/<your-username>/deploy-tutorial.git   # ← เปลี่ยนเป็น repo ของคุณ
+    repoURL: https://github.com/nattapoltongsom/deploy-tutorial.git   # ← เปลี่ยนเป็น repo ของคุณ
     targetRevision: main
     path: helm/hello-app
     helm:
