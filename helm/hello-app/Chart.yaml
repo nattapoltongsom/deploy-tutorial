@@ -1,0 +1,7 @@
+# ข้อมูลของ Helm Chart
+apiVersion: v2
+name: hello-app
+description: Helm chart สำหรับ deploy Hello World app
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

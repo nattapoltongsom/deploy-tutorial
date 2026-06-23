@@ -1,0 +1,38 @@
+# ========================================
+# ArgoCD Application — GitOps Auto Deploy
+# ========================================
+# บอก ArgoCD ว่า:
+#   - ดูจาก Git repo ไหน
+#   - ใช้ Helm chart ตรงไหน
+#   - Deploy ไปที่ namespace ไหน
+#   - sync อัตโนมัติ
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-app
+  namespace: argocd
+spec:
+  project: default
+
+  # SOURCE: ดึง config จากไหน
+  source:
+    repoURL: https://github.com/<your-username>/deploy-tutorial.git   # ← เปลี่ยนเป็น repo ของคุณ
+    targetRevision: main
+    path: helm/hello-app
+    helm:
+      valueFiles:
+        - values.yaml
+
+  # DESTINATION: deploy ไปที่ไหน
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  # SYNC: auto deploy เมื่อ Git เปลี่ยน
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,31 @@
+# ========================================
+# ค่า Config — เปลี่ยนตรงนี้ที่เดียว มีผลทั้ง chart
+# ========================================
+
+# Docker image ที่จะ deploy
+image:
+  repository: hello-app
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+# จำนวน pod
+replicaCount: 1
+
+# Service (ทางเข้า app)
+service:
+  type: NodePort
+  port: 80
+  targetPort: 3000
+
+# Container
+container:
+  port: 3000
+
+# Resource limits
+resources:
+  requests:
+    memory: "64Mi"
+    cpu: "50m"
+  limits:
+    memory: "128Mi"
+    cpu: "100m"
